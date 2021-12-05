@@ -29,6 +29,7 @@ class InvoiceController extends Controller
      */
     public function index(Request $request)
     {
+        //get invoces between two dates
         $validator = Validator::make(
             $request->all(),
             [
@@ -46,7 +47,7 @@ class InvoiceController extends Controller
                 400
             );
         }
-
+        // invoces for user 
         $invoces = Invoice::whereBetween('date', [$request->filter_date_1, $request->filter_date_2]) 
         ->where(function($query){
             $query->where('added_by', '=', Auth::user()->id)
@@ -67,7 +68,7 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //validate the inputs
         $validator = Validator::make(
             $request->all(),
             [

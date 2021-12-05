@@ -17,6 +17,7 @@ class RegisterController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function register(Request $request, String $type){
+         // The user type get from url and check it
         $all_input =  $request->all();
         $all_input["type"] = $type;
         $validator = Validator::make(
@@ -56,7 +57,7 @@ class RegisterController extends Controller
             'password' => bcrypt($request->password)
         ]);
     
-
+        //User Authentication create, set token
         $credentials = ['email'=>$request->email,'password'=>$request->password,'type'=>$type];
 
         if(!Auth::attempt($credentials)){

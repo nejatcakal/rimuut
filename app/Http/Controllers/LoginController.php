@@ -17,6 +17,7 @@ class LoginController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function login(Request $request, String $type){
+        // The user type get from url and check it
         $all_input =  $request->all();
         $all_input["type"] = $type;
         $validator = Validator::make(
@@ -41,7 +42,7 @@ class LoginController extends Controller
                 400
             );
         }
-
+        //User Authentication create, set token
         $credentials = ['email'=>$request->email,'password'=>$request->password,'type'=>$type];
 
         if(!Auth::attempt($credentials)){

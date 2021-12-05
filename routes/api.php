@@ -61,12 +61,12 @@ Route::group(
     ],
     function($router){
        
-        Route::get('','InvoiceController@index' );
-        Route::post('add','InvoiceController@store' );
-        Route::put('update/{invoice}','InvoiceController@update' );
-        Route::put('send/{invoice}','InvoiceController@send' );
-        Route::delete('delete/{invoice}','InvoiceController@destroy');
-        Route::get('get/{invoice}','InvoiceController@show' );
+        Route::get('','InvoiceController@index' )->name('invoices');
+        Route::post('add','InvoiceController@store' )->name('invoices.store');
+        Route::put('update/{invoice}','InvoiceController@update' )->name('invoices.update');
+        Route::put('send/{invoice}','InvoiceController@send' )->name('invoices.send');
+        Route::delete('delete/{invoice}','InvoiceController@destroy')->name('invoices.destroy');
+        Route::get('get/{invoice}','InvoiceController@show' )->name('invoices.show');
         
     }
 
