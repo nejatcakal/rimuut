@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\RegisterRequest;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -13,11 +12,11 @@ class RegisterController extends Controller
     /**
      * Get a JWT via given credentials.
      *
-     * @param  \App\Http\Requests\RegisterRequest  $request
+  
      * @param  String type
      * @return \Illuminate\Http\JsonResponse
      */
-    public function register(RegisterRequest $request, String $type){
+    public function register(Request $request, String $type){
         $all_input =  $request->all();
         $all_input["type"] = $type;
         $validator = Validator::make(
@@ -46,8 +45,8 @@ class RegisterController extends Controller
             );
         }
 
-        $request->validated();
-        
+
+
         $user = User::create([
             'name'=>$request->name,
             'surname'=>$request->surname,
